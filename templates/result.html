@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Gym Weight Calculator - Result</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="results_container">
+        <h1>Gym Weight Calculator - Result</h1>
+        <div class="result">
+            <h2>Desired Weight:</h2>
+            <p>{{ desired_weight }} pounds</p>
+            <h2>Best Combination:</h2>
+            <p>{{ best_combination }}</p>
+            <h2>Difference:</h2>
+            <p>{{ difference }} pounds</p>
+        </div>
+        <a href="{{ url_for('home') }}" class="back-button">Go Back</a>
+    </div>
+</body>
+
+</html>

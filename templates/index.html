@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Weight Calculator</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <h1>Gym Weight Calculator</h1>
+
+            <form method="POST" action="{{ url_for('home') }}">
+                <label for="desired_weight">Desired Weight (in pounds):</label>
+                <input type="text" id="desired_weight" name="desired_weight" required>
+                <input type="submit" value="Calculate">
+            </form>
+
+            {% if error_message %}
+            <div class="error-message">{{ error_message }}</div>
+            {% endif %}
+
+            {% if saved_weights %}
+            <div class="saved-weights">
+                <h2>Previous Weights:</h2>
+                {% for weight in saved_weights %}
+                <button class="weight-button"
+                    onclick="document.getElementById('desired_weight').value = '{{ weight.weight }}'; document.forms[0].submit();">
+                    {% if weight.weight|int == weight.weight %}
+                    {{ weight.weight|int }}
+                    {% else %}
+                    {{ weight.weight }}
+                    {% endif %}
+                    lbs
+                </button>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
+</body>
+
+</html>
