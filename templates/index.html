@@ -38,6 +38,9 @@
                     lbs
                 </button>
                 {% endfor %}
+                <form method="POST" action="{{ url_for('clear_weights') }}">
+                    <button type="submit">Clear</button>
+                </form>
             </div>
             {% endif %}
         </div>
