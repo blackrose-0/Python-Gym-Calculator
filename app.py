@@ -126,6 +126,16 @@ def get_saved_weights():
     """
     return Weight.query.order_by(Weight.id.desc()).limit(5).all()
 
+@app.route("/clear_weights", methods=["POST"])
+def clear_weights():
+    """
+    Clear all saved weights from the database.
+    Returns:
+        Response: The response for the home page.
+    """
+    Weight.query.delete()
+    db.session.commit()
+    return redirect(url_for("home"))
 
 if __name__ == '__main__':
     initialize_database()
